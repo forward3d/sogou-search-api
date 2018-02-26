@@ -9,6 +9,7 @@ module Sogou
           USERNAME_HEADER = 'v1:username'.freeze
           PASSWORD_HEADER = 'v1:password'.freeze
           API_TOKEN_HEADER = 'v1:token'.freeze
+          AUTH_HEADER = 'v1:AuthHeader'.freeze
 
           attr_reader :api_token
           attr_reader :username
@@ -21,12 +22,12 @@ module Sogou
           end
 
           def apply(hash)
-            hash['v1:AuthHeader'] = {
+            hash[AUTH_HEADER] = {
               USERNAME_HEADER => username,
               PASSWORD_HEADER => password,
               API_TOKEN_HEADER => api_token
             }
-            hash
+            #hash
           end
         end
 
