@@ -6,29 +6,29 @@ require 'sogou/search/api/promotion_group'
 require 'sogou/search/api/keyword'
 require 'sogou/search/api/report'
 
-ENV['SOGOU_API_TOKEN'] = 'xxxx'
-ENV['SOGOU_USERNAME'] = 'xxxx'
-ENV['SOGOU_PASSWORD'] = 'xxxx'
+# ENV['SOGOU_API_TOKEN'] = 'xxxx'
+# ENV['SOGOU_USERNAME'] = 'xxxx'
+# ENV['SOGOU_PASSWORD'] = 'xxxx'
 
 # account = Sogou::Search::Api::Account.new
 # account.authorization = Sogou::Search::Api::Auth.get_application_default
 # p account.get_account_info
 
-# plan = Sogou::Search::Api::Plan.new
-# plan.authorization = Sogou::Search::Api::Auth.get_application_default
-# #p plan.get_all_cpc_plan
-# plan_ids = plan.get_all_cpc_plan_id[:get_all_cpc_plan_id_response][:cpc_plan_ids]
-# p plan_ids
+plan = Sogou::Search::Api::Plan.new
+plan.authorization = Sogou::Search::Api::Auth.get_application_default
+#p plan.get_all_cpc_plan
+plan_ids = plan.get_all_cpc_plan_id[:get_all_cpc_plan_id_response][:cpc_plan_ids]
+p plan_ids
+
+group = Sogou::Search::Api::PromotionGroup.new
+group.authorization = Sogou::Search::Api::Auth.get_application_default
+#p group.get_cpc_grp_by_cpc_plan(plan_ids.slice(0, 2))
+grp_ids = group.get_cpc_grp_id_by_cpc_plan_id(plan_ids.slice(0, 2))[:get_cpc_grp_id_by_cpc_plan_id_response][:cpc_plan_grp_ids]
+p grp_ids
 #
-# group = Sogou::Search::Api::PromotionGroup.new
-# group.authorization = Sogou::Search::Api::Auth.get_application_default
-# #p group.get_cpc_grp_by_cpc_plan_id(plan_ids.slice(0, 2))
-# grp_ids = group.get_cpc_grp_id_by_cpc_plan_id(plan_ids.slice(0, 2))[:get_cpc_grp_id_by_cpc_plan_id_response][:cpc_plan_grp_ids]
-# p grp_ids
-#
-# k = Sogou::Search::Api::Keyword.new
-# k.authorization = Sogou::Search::Api::Auth.get_application_default
-# p k.get_cpc_by_cpc_grp_id(grp_ids.map { |id| id[:cpc_grp_ids] }.flatten.slice(0, 2))
+k = Sogou::Search::Api::Keyword.new
+k.authorization = Sogou::Search::Api::Auth.get_application_default
+p k.get_cpc_by_cpc_grp_id(grp_ids.map { |id| id[:cpc_grp_ids] }.flatten.slice(0, 2))
 
 # ReportType
 # 1, 2, 3, 4, 5, 6, 7
