@@ -27,7 +27,6 @@ module Sogou
               PASSWORD_HEADER => password,
               API_TOKEN_HEADER => api_token
             }
-            #hash
           end
         end
 
