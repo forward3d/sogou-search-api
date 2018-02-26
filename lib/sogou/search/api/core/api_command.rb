@@ -60,7 +60,7 @@ module Sogou
           end
 
           def error(err, &block)
-            if err.is_a?(Net::ReadTimeou) || err.is_a?(SocketError)
+            if err.is_a?(Net::ReadTimeout) || err.is_a?(SocketError)
               err = TransmissionError.new(err)
             end
 
