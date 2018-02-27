@@ -9,18 +9,18 @@ module Sogou
             super('http://api.agent.sogou.com:8080/sem/sms/v1/CpcGrpService?wsdl')
           end
 
-          def get_cpc_grp_by_cpc_plan_id(plan_ids)
-            resp = client.call(:get_cpc_grp_by_cpc_plan_id,
-                               message: { cpc_plan_ids: plan_ids })
-            puts resp.header
-            resp.body
+          def get_cpc_grp_by_cpc_plan_id(plan_ids, options={}, &block)
+            command = make_command(:get_cpc_grp_by_cpc_plan_id,
+                                   params: { cpc_plan_ids: plan_ids },
+                                   options: options)
+            execute_command(command, &block)
           end
 
-          def get_cpc_grp_id_by_cpc_plan_id(plan_ids)
-            resp = client.call(:get_cpc_grp_id_by_cpc_plan_id,
-                               message: { cpc_plan_ids: plan_ids })
-            puts resp.header
-            resp.body
+          def get_cpc_grp_id_by_cpc_plan_id(plan_ids, options={}, &block)
+            command = make_command(:get_cpc_grp_id_by_cpc_plan_id,
+                                   params: { cpc_plan_ids: plan_ids },
+                                   options: options)
+            execute_command(command, &block)
           end
         end
       end

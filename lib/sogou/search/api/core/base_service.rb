@@ -16,6 +16,7 @@ module Sogou
 
           def make_command(operation, params: {}, options: {})
             ApiCommand.new(operation).tap do |command|
+              command.params = params unless params.empty?
               command.options = options
             end
           end

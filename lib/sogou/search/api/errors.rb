@@ -4,6 +4,7 @@ module Sogou
       class Error < StandardError
         attr_reader :code
         attr_reader :message
+        attr_reader :header
 
         def initialize(err, code: nil, header: nil)
           @cause = nil
@@ -38,6 +39,12 @@ module Sogou
       UnknownError = Class.new(Error)
 
       TransmissionError = Class.new(Error)
+
+      PlanIdNotExistError = Class.new(Error)
+
+      PromotionGroupIdNotExistError = Class.new(Error)
+
+      KeywordIdNotExistError = Class.new(Error)
     end
   end
 end
