@@ -8,8 +8,8 @@ module Sogou
         class BaseService
           attr_accessor :authorization
 
-          def initialize(url)
-            @url = url
+          def initialize(service)
+            @url = "http://#{service_host}/sem/sms/v1/#{service}?wsdl"
           end
 
           protected
@@ -40,6 +40,14 @@ module Sogou
                 convert_response_tags_to: lambda { |key| key.snakecase }
               )
             end
+          end
+
+          private
+
+          def service_host
+            host = 'api.agent.sogou.com'
+            host += ':8080' if ENV.fetch('ENV', 'development') == 'development'
+            host
           end
         end
       end

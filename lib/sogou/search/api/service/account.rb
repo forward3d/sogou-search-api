@@ -6,7 +6,7 @@ module Sogou
       module Service
         class Account < Core::BaseService
           def initialize
-            super('http://api.agent.sogou.com:8080/sem/sms/v1/AccountService?wsdl')
+            super('AccountService')
           end
 
           def get_account_info(options = {}, &block)
