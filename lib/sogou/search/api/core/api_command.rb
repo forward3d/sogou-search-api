@@ -54,12 +54,12 @@ module Sogou
 
           private
 
-          def success(result, &block)
+          def success(result)
             yield(result, nil)  if block_given?
             result
           end
 
-          def error(err, &block)
+          def error(err)
             if err.is_a?(Net::ReadTimeout) || err.is_a?(SocketError)
               err = TransmissionError.new(err)
             end
