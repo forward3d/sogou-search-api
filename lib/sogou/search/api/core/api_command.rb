@@ -44,7 +44,7 @@ module Sogou
           # More error codes and descriptions can be found here
           # http://apihome.sogou.com/document/ss/doc11.jsp
           #
-          def check_error_code(header, raise_error=true)
+          def check_error_code(header, raise_error = true)
             api_header = header.is_a?(Array) ? header[0] : header
             error = case api_header[:code].to_i
             when 6 # Invalid username
@@ -56,11 +56,11 @@ module Sogou
             when 18 # Insufficient quotas
               RateLimitError
             when 1000011 # Plan ID does not exist
-              PlanIdNotExistError
+              PlanIDNotExistError
             when 1000012 # Promotion group Id does not exist
-              PromotionGroupIdNotExistError
+              PromotionGroupIDNotExistError
             when 1000013 # Keyword ID does not exist
-              KeywordIdNotExistError
+              KeywordIDNotExistError
             else
               UnknownError
             end

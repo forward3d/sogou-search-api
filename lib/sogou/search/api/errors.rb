@@ -40,11 +40,11 @@ module Sogou
 
       TransmissionError = Class.new(Error)
 
-      PlanIdNotExistError = Class.new(Error)
+      PlanIDNotExistError = Class.new(Error)
 
-      PromotionGroupIdNotExistError = Class.new(Error)
+      PromotionGroupIDNotExistError = Class.new(Error)
 
-      KeywordIdNotExistError = Class.new(Error)
+      KeywordIDNotExistError = Class.new(Error)
     end
   end
 end
