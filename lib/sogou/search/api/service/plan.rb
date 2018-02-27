@@ -9,16 +9,14 @@ module Sogou
             super('http://api.agent.sogou.com:8080/sem/sms/v1/CpcPlanService?wsdl')
           end
 
-          def get_all_cpc_plan_id
-            resp = client.call(:get_all_cpc_plan_id)
-            puts resp.header
-            resp.body
+          def get_all_cpc_plan_id(options={}, &block)
+            command = make_command(:get_all_cpc_plan_id, options: options)
+            execute_command(command, &block)
           end
 
-          def get_all_cpc_plan
-            resp = client.call(:get_all_cpc_plan)
-            puts resp.header
-            resp.body
+          def get_all_cpc_plan(options={}, &block)
+            command = make_command(:get_all_cpc_plan, options: options)
+            execute_command(command, &block)
           end
         end
       end
