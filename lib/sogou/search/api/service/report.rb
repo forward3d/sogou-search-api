@@ -9,7 +9,7 @@ module Sogou
             super('http://api.agent.sogou.com:8080/sem/sms/v1/ReportService?wsdl')
           end
 
-          def get_report_id(start_date, end_date, type, fields, options={})
+          def get_report_id(start_date, end_date, type, fields, options = {}, &block)
             operation = client.operation(:get_report_id)
             resp = client.call(:get_report_id, message: {
               report_request_type: {
@@ -23,14 +23,14 @@ module Sogou
             resp.body
           end
 
-          def get_report_state(report_id)
+          def get_report_state(report_id, options = {}, &block)
             resp = client.call(:get_report_state, message: { report_id: report_id })
 
             puts resp.header
             resp.body
           end
 
-          def get_report_path(report_id)
+          def get_report_path(report_id, options = {}, &block)
             resp = client.call(:get_report_path, message: { report_id: report_id })
 
             puts resp.header

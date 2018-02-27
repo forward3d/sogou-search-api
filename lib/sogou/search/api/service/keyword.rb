@@ -13,7 +13,7 @@ module Sogou
             command = make_command(:get_cpc_by_cpc_grp_id,
                                    params: {
                                      cpc_grp_ids: grp_ids,
-                                     get_temp: valid_keyword_only ? 0 : 1
+                                     get_temp: valid_keyword_only?(valid_keyword_only)
                                    },
                                    options: options)
             execute_command(command, &block)
@@ -23,10 +23,16 @@ module Sogou
             command = make_command(:get_cpc_id_by_cpc_grp_id,
                                    params: {
                                      cpc_grp_ids: grp_ids,
-                                     get_temp: valid_keyword_only ? 0 : 1
+                                     get_temp: valid_keyword_only?(valid_keyword_only)
                                    },
                                    options: options)
             execute_command(command, &block)
+          end
+
+          private
+
+          def valid_keyword_only?(only)
+            only ? 0 : 1
           end
         end
       end
