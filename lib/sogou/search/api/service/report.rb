@@ -10,30 +10,36 @@ module Sogou
           end
 
           def get_report_id(start_date, end_date, type, fields, options = {}, &block)
-            command = make_command(:get_report_id,
-                                   params: {
-                                     report_request_type: {
-                                       performance_data: fields,
-                                       start_date: start_date,
-                                       end_date: end_date,
-                                       report_type: type
-                                     }
-                                   },
-                                   options: options)
+            command = make_command(
+              :get_report_id,
+              params: {
+                report_request_type: {
+                  performance_data: fields,
+                  start_date: start_date,
+                  end_date: end_date,
+                  report_type: type
+                }
+              },
+              options: options
+            )
             execute_command(command, &block)
           end
 
           def get_report_state(report_id, options = {}, &block)
-            command = make_command(:get_report_state,
-                                   params: { report_id: report_id },
-                                   options: options)
+            command = make_command(
+              :get_report_state,
+              params: { report_id: report_id },
+              options: options
+            )
             execute_command(command, &block)
           end
 
           def get_report_path(report_id, options = {}, &block)
-            command = make_command(:get_report_path,
-                                   params: { report_id: report_id },
-                                   options: options)
+            command = make_command(
+              :get_report_path,
+              params: { report_id: report_id },
+              options: options
+            )
             execute_command(command, &block)
           end
         end
