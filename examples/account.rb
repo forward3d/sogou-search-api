@@ -2,7 +2,8 @@ require 'sogou/search/api/auth'
 require 'sogou/search/api/service/account'
 require 'sogou/search/api/service/plan'
 
-# Set your api credentials to ENVs
+#
+# Set your Sogou api credentials to ENVs
 #
 # ENV['SOGOU_API_TOKEN'] = 'xxxx'
 # ENV['SOGOU_USERNAME'] = 'xxxx'
