@@ -55,7 +55,7 @@ module Sogou
           private
 
           def success(result, &block)
-            block.call(result, nil)  if block_given?
+            yield(result, nil)  if block_given?
             result
           end
 
@@ -65,7 +65,7 @@ module Sogou
             end
 
             if block_given?
-              block.call(nil, err)
+              yield(nil, err)
             else
               raise err
             end
