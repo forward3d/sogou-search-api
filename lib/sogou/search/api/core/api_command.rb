@@ -34,10 +34,10 @@ module Sogou
           def process_response(response)
             logger.debug("Response Header - #{response.header}")
 
-            header = response.header[:res_header]
-            return response.body["#{@operation}_response".to_sym] if header[:desc] == 'success'
+            header = response.header['res_header']
+            return response.body["#{@operation}_response"] if header['desc'] == 'success'
 
-            check_error_code(header[:failures])
+            check_error_code(header['failures'])
           end
 
           #
@@ -46,7 +46,7 @@ module Sogou
           #
           def check_error_code(header, raise_error = true)
             api_header = header.is_a?(Array) ? header[0] : header
-            error = case api_header[:code].to_i
+            error = case api_header['code'].to_i
             when 6 # Invalid username
               InvalidUserNameError
             when 8 # Wrong password
@@ -66,8 +66,8 @@ module Sogou
             end
 
             exception = error.new(
-              api_header.fetch(:message, 'Unknown error'),
-              code: api_header[:code],
+              api_header.fetch('message', 'Unknown error'),
+              code: api_header['code'],
               header: header
             )
             raise_error ? (raise exception) : exception

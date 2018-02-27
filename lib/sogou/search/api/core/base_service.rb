@@ -21,6 +21,9 @@ module Sogou
             end
           end
 
+          def make_download_command(file_url, options: {})
+          end
+
           def execute_command(command, &block)
             command.execute(client, &block)
           end
@@ -36,7 +39,10 @@ module Sogou
                 namespaces: { 'xmlns:v1' => 'http://api.sogou.com/sem/common/v1' },
                 env_namespace: :soapenv,
                 namespace_identifier: :v11,
-                soap_header: soap_header
+                soap_header: soap_header,
+                #adapter: :httpclient
+                #convert_request_keys_to: :camelcase
+                convert_response_tags_to: lambda { |key| key.snakecase }
               )
             end
           end
