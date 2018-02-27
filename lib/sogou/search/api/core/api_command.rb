@@ -49,7 +49,7 @@ module Sogou
               UnknownError
             end
 
-            error.new(header[:message], code: header[:code], header: header)
+            raise error.new(header[:message], code: header[:code], header: header)
           end
 
           private
