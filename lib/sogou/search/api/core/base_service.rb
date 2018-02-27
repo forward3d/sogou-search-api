@@ -1,4 +1,5 @@
 require 'savon'
+require_relative '../options'
 require_relative 'api_command'
 
 module Sogou
@@ -7,9 +8,11 @@ module Sogou
       module Core
         class BaseService
           attr_accessor :authorization
+          attr_accessor :client_options
 
           def initialize(service)
             @url = "http://#{service_host}/sem/sms/v1/#{service}?wsdl"
+            @client_options = ClientOptions.default.dup
           end
 
           protected
@@ -26,19 +29,21 @@ module Sogou
           end
 
           def client
-            @client ||= begin
+            @client ||= Savon::Client.new do |savon|
+              savon.wsdl(@url)
+              savon.pretty_print_xml(true)
+              savon.namespaces('xmlns:v1' => 'http://api.sogou.com/sem/common/v1')
+              savon.env_namespace(:soapenv)
+              savon.namespace_identifier(:v11)
+              savon.convert_response_tags_to(lambda { |key| key.snakecase })
+
               soap_header = {}
               authorization.apply(soap_header)
+              savon.soap_header(soap_header)
 
-              Savon.client(
-                pretty_print_xml: true,
-                wsdl: @url,
-                namespaces: { 'xmlns:v1' => 'http://api.sogou.com/sem/common/v1' },
-                env_namespace: :soapenv,
-                namespace_identifier: :v11,
-                soap_header: soap_header,
-                convert_response_tags_to: lambda { |key| key.snakecase }
-              )
+              client.proxy = client_options.proxy_url if client_options.proxy_url
+              client.open_timeout = client_options.open_timeout_sec if client_options.open_timeout_sec
+              client.read_timeout = client_options.read_timeout_sec if client_options.read_timeout_sec
             end
           end
 
