@@ -36,12 +36,6 @@ module Sogou
                                    options: options)
             execute_command(command, &block)
           end
-
-          def download_report(download_url, file_path, options = {}, &block)
-            command = make_download_command(download_url, options: options)
-            command.download_path = file_path
-            execute_command(command, &block)
-          end
         end
       end
     end
