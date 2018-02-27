@@ -1,14 +1,15 @@
 require 'sogou/search/api/auth'
 require 'sogou/search/api/service/report'
 
+#
+# Set your Sogou api credentials to ENVs
+#
 # ENV['SOGOU_API_TOKEN'] = 'xxxx'
 # ENV['SOGOU_USERNAME'] = 'xxxx'
 # ENV['SOGOU_PASSWORD'] = 'xxxx'
 
 include Sogou::Search::Api
 
-# ReportType
-# 1, 2, 3, 4, 5, 6, 7
 report = Service::Report.new
 report.authorization = Auth.get_application_default
 report_id = report.get_report_id(

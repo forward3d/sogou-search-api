@@ -3,6 +3,9 @@ require 'sogou/search/api/service/plan'
 require 'sogou/search/api/service/promotion_group'
 require 'sogou/search/api/service/keyword'
 
+#
+# Set your Sogou api credentials to ENVs
+#
 # ENV['SOGOU_API_TOKEN'] = 'xxxx'
 # ENV['SOGOU_USERNAME'] = 'xxxx'
 # ENV['SOGOU_PASSWORD'] = 'xxxx'
