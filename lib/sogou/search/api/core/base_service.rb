@@ -36,7 +36,8 @@ module Sogou
                 namespaces: { 'xmlns:v1' => 'http://api.sogou.com/sem/common/v1' },
                 env_namespace: :soapenv,
                 namespace_identifier: :v11,
-                soap_header: soap_header
+                soap_header: soap_header,
+                convert_response_tags_to: lambda { |key| key.snakecase }
               )
             end
           end
