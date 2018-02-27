@@ -57,7 +57,7 @@ module Sogou
               RateLimitError
             when 1000011 # Plan ID does not exist
               PlanIDNotExistError
-            when 1000012 # Promotion group Id does not exist
+            when 1000012 # Promotion group ID does not exist
               PromotionGroupIDNotExistError
             when 1000013 # Keyword ID does not exist
               KeywordIDNotExistError
