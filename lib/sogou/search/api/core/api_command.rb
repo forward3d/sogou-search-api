@@ -86,7 +86,7 @@ module Sogou
             end
 
             if block_given?
-              if err.header.is_a?(Array)
+              if err.respond_to?(:header) && err.header.is_a?(Array)
                 err = err.header.map { |h| check_error_code(h, false) }
               end
               yield(nil, err)
