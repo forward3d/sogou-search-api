@@ -50,9 +50,7 @@ module Sogou
           private
 
           def service_host
-            host = 'api.agent.sogou.com'
-            host += ':8080' if ENV.fetch('ENV', 'development') == 'development'
-            host
+            "api.agent.sogou.com#{ENV.fetch('ENV', 'development') == 'development' ? ':8080' : ''}"
           end
         end
       end
