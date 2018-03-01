@@ -6,7 +6,7 @@ module Sogou
       module Service
         class PromotionGroup < Core::BaseService
           def initialize
-            super('http://api.agent.sogou.com:8080/sem/sms/v1/CpcGrpService?wsdl')
+            super('CpcGrpService')
           end
 
           def get_cpc_grp_by_cpc_plan_id(plan_ids, options = {}, &block)

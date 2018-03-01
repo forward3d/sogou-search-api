@@ -6,7 +6,7 @@ module Sogou
       module Service
         class Plan < Core::BaseService
           def initialize
-            super('http://api.agent.sogou.com:8080/sem/sms/v1/CpcPlanService?wsdl')
+            super('CpcPlanService')
           end
 
           def get_all_cpc_plan_id(options = {}, &block)

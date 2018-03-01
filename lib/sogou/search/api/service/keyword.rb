@@ -6,7 +6,7 @@ module Sogou
       module Service
         class Keyword < Core::BaseService
           def initialize
-            super('http://api.agent.sogou.com:8080/sem/sms/v1/CpcService?wsdl')
+            super('CpcService')
           end
 
           def get_cpc_by_cpc_grp_id(grp_ids, valid_keyword_only = true, options = {}, &block)

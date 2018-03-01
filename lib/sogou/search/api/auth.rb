@@ -19,11 +19,13 @@ module Sogou
           end
 
           def apply(hash)
+            hash ||= {}
             hash[AUTH_HEADER] = {
               USERNAME_HEADER => username,
               PASSWORD_HEADER => password,
               API_TOKEN_HEADER => api_token
             }
+            hash
           end
         end
 

@@ -6,7 +6,7 @@ module Sogou
       module Service
         class Report < Core::BaseService
           def initialize
-            super('http://api.agent.sogou.com:8080/sem/sms/v1/ReportService?wsdl')
+            super('ReportService')
           end
 
           def get_report_id(start_date, end_date, type, fields, options = {}, &block)
