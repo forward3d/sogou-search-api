@@ -38,12 +38,12 @@ module Sogou
               savon.convert_response_tags_to(lambda { |key| key.snakecase })
 
               soap_header = {}
-              authorization.apply(soap_header)
+              authorization.apply(soap_header) if authorization
               savon.soap_header(soap_header)
 
-              client.proxy = client_options.proxy_url if client_options.proxy_url
-              client.open_timeout = client_options.open_timeout_sec if client_options.open_timeout_sec
-              client.read_timeout = client_options.read_timeout_sec if client_options.read_timeout_sec
+              savon.proxy(client_options.proxy_url) if client_options.proxy_url
+              savon.open_timeout(client_options.open_timeout_sec) if client_options.open_timeout_sec
+              savon.read_timeout(client_options.read_timeout_sec) if client_options.read_timeout_sec
             end
           end
 

@@ -14,8 +14,6 @@ require 'sogou/search/api'
 require 'sogou/search/api/auth'
 require 'sogou/search/api/core/base_service'
 
-# Dir["./spec/support/**/*.rb"].sort.each { |f| require f }
-
 RSpec.configure do |config|
   Sogou::Search::Api.logger.level = Logger::WARN
 
