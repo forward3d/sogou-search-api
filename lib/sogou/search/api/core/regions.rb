@@ -404,9 +404,9 @@ module Sogou
 
           def convert_regions_to_string(results)
             if results.is_a?(Hash)
-              regions = results['regions']
-              if regions
-                results['regions'] = REGIONS_CODE.fetch(regions.to_i, regions)
+              region = results['regions']
+              if region
+                results['regions'] = REGIONS_CODE.fetch(region.to_i, region)
               end
             elsif results.is_a?(Array)
               results = results.map { |r| convert_regions_to_string(r) }
