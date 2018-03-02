@@ -81,8 +81,9 @@ describe Core::ApiCommand do
       end
 
       it 'calls check_error_code to check errors' do
-        expect(this).to receive(:check_error_code).with(failure_header)
-        process_response
+        expect(this).to receive(:check_error_code).with(failure_header) { raise InvalidUserNameError.new('something bad happened') }
+        expect(this).not_to receive(:decode_response_body)
+        expect{ process_response }.to raise_error(InvalidUserNameError)
       end
     end
   end
