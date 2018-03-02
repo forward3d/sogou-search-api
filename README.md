@@ -107,7 +107,7 @@ This library is licensed under Apache 2.0. Full license text is available in [LI
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/forward3d/naver-searchad-api. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/forward3d/sogou-search-api. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 We encourage contributors to follow [Bozhidar's ruby style guide](https://github.com/bbatsov/ruby-style-guide) in this project.
 
