@@ -1,5 +1,6 @@
 require_relative '../errors'
 require_relative 'logging'
+require_relative 'regions'
 
 module Sogou
   module Search
@@ -7,6 +8,7 @@ module Sogou
       module Core
         class ApiCommand
           include Logging
+          include Regions
 
           attr_accessor :operation
           attr_accessor :options
@@ -32,13 +34,25 @@ module Sogou
           end
 
           def process_response(response)
-            logger.debug("Response Header - #{response.header}")
-
-            header = response.header['res_header']
-            return response.body["#{@operation}_response"] if header['desc'] == 'success'
-
-            check_error_code(header['failures'])
+            check_status(response)
+            decode_response_body(response.body)
           end
+
+          def check_status(response)
+            logger.debug("Response Header - #{response.header}")
+            res_header = response.header['res_header']
+            check_error_code(res_header['failures']) if res_header['desc'] != 'success'
+          end
+
+          def decode_response_body(body)
+            result = body["#{@operation}_response"]
+            if result
+              result = result.is_a?(Hash) ? result.values[0] : result
+              result = convert_regions_to_string(result) if options[:convert_regions_to_string]
+              result
+            end
+          end
+
 
           #
           # More error codes and descriptions can be found here
@@ -46,26 +60,26 @@ module Sogou
           #
           def check_error_code(header, raise_error = true)
             api_header = header.is_a?(Array) ? header[0] : header
-            error = case api_header['code'].to_i
-            when 6 # Invalid username
-              InvalidUserNameError
-            when 8 # Wrong password
-              WrongPasswordError
-            when 10 # Token is invalid
-              InvalidTokenError
-            when 18 # Insufficient quotas
-              RateLimitError
-            when 1000011 # Plan ID does not exist
-              PlanIDNotExistError
-            when 1000012 # Promotion group ID does not exist
-              PromotionGroupIDNotExistError
-            when 1000013 # Keyword ID does not exist
-              KeywordIDNotExistError
-            else
-              UnknownError
-            end
+            error_klass = case api_header['code'].to_i
+                          when 6 # Invalid username
+                            InvalidUserNameError
+                          when 8 # Wrong password
+                            WrongPasswordError
+                          when 10 # Token is invalid
+                            InvalidTokenError
+                          when 18 # Insufficient quotas
+                            RateLimitError
+                          when 1000011 # Plan ID does not exist
+                            PlanIDNotExistError
+                          when 1000012 # Promotion group ID does not exist
+                            PromotionGroupIDNotExistError
+                          when 1000013 # Keyword ID does not exist
+                            KeywordIDNotExistError
+                          else
+                            UnknownError
+                    end
 
-            exception = error.new(
+            exception = error_klass.new(
               api_header.fetch('message', 'Unknown error'),
               code: api_header['code'],
               header: header

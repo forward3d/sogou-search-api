@@ -12,7 +12,7 @@ include Sogou::Search::Api
 
 plan = Service::Plan.new
 plan.authorization = Auth.get_application_default
-plan.get_all_cpc_plan do |result, err|
+plan.get_all_cpc_plan(convert_regions_to_string: true) do |result, err|
   if err != nil
     p err
   else

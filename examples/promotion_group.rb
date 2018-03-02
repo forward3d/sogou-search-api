@@ -13,7 +13,7 @@ include Sogou::Search::Api
 
 plan = Service::Plan.new
 plan.authorization = Auth.get_application_default
-plan_ids = plan.get_all_cpc_plan_id['cpc_plan_ids'].slice(0, 2)
+plan_ids = plan.get_all_cpc_plan_id.slice(0, 2)
 
 group = Service::PromotionGroup.new
 group.authorization = Auth.get_application_default

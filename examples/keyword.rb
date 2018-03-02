@@ -14,11 +14,11 @@ include Sogou::Search::Api
 
 plan = Service::Plan.new
 plan.authorization = Auth.get_application_default
-plan_ids = plan.get_all_cpc_plan_id['cpc_plan_ids'].slice(0, 2)
+plan_ids = plan.get_all_cpc_plan_id.slice(0, 2)
 
 group = Service::PromotionGroup.new
 group.authorization = Auth.get_application_default
-group_ids = group.get_cpc_grp_id_by_cpc_plan_id(plan_ids)['cpc_plan_grp_ids'].
+group_ids = group.get_cpc_grp_id_by_cpc_plan_id(plan_ids).
               map { |id| id['cpc_grp_ids'] }.flatten.slice(0, 2)
 
 keyword = Service::Keyword.new
