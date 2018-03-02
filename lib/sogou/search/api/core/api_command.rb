@@ -53,14 +53,13 @@ module Sogou
             end
           end
 
-
           #
           # More error codes and descriptions can be found here
           # http://apihome.sogou.com/document/ss/doc11.jsp
           #
           def check_error_code(header, raise_error = true)
-            api_header = header.is_a?(Array) ? header[0] : header
-            error_klass = case api_header['code'].to_i
+            res_header = header.is_a?(Array) ? header[0] : header
+            error_klass = case res_header['code'].to_i
                           when 6 # Invalid username
                             InvalidUserNameError
                           when 8 # Wrong password
@@ -77,11 +76,11 @@ module Sogou
                             KeywordIDNotExistError
                           else
                             UnknownError
-                    end
+                          end
 
             exception = error_klass.new(
-              api_header.fetch('message', 'Unknown error'),
-              code: api_header['code'],
+              res_header.fetch('message', 'Unknown error'),
+              code: res_header['code'],
               header: header
             )
             raise_error ? (raise exception) : exception
