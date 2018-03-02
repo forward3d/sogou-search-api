@@ -407,14 +407,16 @@ module Sogou
           # can be either Interger[] or Integer from
           # http://apihome.sogou.com/document/ss/doc9-1.jsp and
           # http://apihome.sogou.com/document/ss/doc9-2.jsp,
-          # But "regions" value is returned always as integer value.
-          # Unless we find the case for integer[], below method will work.
           #
           def convert_regions_to_string(results)
             if results.is_a?(Hash)
-              region = results['regions']
-              if region
-                results['regions'] = REGIONS_CODE.fetch(region.to_i, region)
+              regions = results['regions']
+              if regions
+                if regions.is_a?(Array)
+                  results['regions'] = regions.map { |r| REGIONS_CODE.fetch(r.to_i, r) }
+                else
+                  results['regions'] = REGIONS_CODE.fetch(regions.to_i, regions)
+                end
               end
             elsif results.is_a?(Array)
               results = results.map { |r| convert_regions_to_string(r) }
