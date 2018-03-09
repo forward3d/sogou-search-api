@@ -12,13 +12,15 @@ include Sogou::Search::Api
 
 report = Service::Report.new
 report.authorization = Auth.get_application_default
-report_id = report.get_report_id(
-  '2018-02-20T00:00:00',
-  '2018-02-20T23:59:59',
-  2,
-  ['cost', 'cpc', 'click', 'ctr', 'impression', 'position'],
-  platform: 2
-  )
+
+request = Service::ReportRequest.default.dup
+request.fields = %w[cost cpc click ctr impression position]
+request.start_date = '2018-02-20T00:00:00'
+request.end_date = '2018-02-20T23:59:59'
+request.type = 2
+request.platform = 2
+
+report_id = report.get_report_id(request)
 
 state = '0'
 max_try = 10
