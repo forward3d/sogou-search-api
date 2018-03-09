@@ -13,7 +13,7 @@ include Sogou::Search::Api
 report = Service::Report.new
 report.authorization = Auth.get_application_default
 
-request = Service::ReportRequest.default.dup
+request = Service::ReportRequest.new
 request.fields = %w[cost cpc click ctr impression position]
 request.start_date = '2018-02-20T00:00:00'
 request.end_date = '2018-02-20T23:59:59'
