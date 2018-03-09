@@ -9,7 +9,7 @@ module Sogou
             super('AccountService')
           end
 
-          def get_account_info(options = {}, &block)
+          def get_account_info(options: {}, &block)
             command = make_command(:get_account_info, options: options)
             execute_command(command, &block)
           end

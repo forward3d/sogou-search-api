@@ -9,7 +9,7 @@ module Sogou
             super('CpcService')
           end
 
-          def get_cpc_by_cpc_grp_id(grp_ids, valid_keyword_only = true, options = {}, &block)
+          def get_cpc_by_cpc_grp_id(grp_ids, valid_keyword_only: true, options: {}, &block)
             command = make_command(
               :get_cpc_by_cpc_grp_id,
               params: {
@@ -21,7 +21,7 @@ module Sogou
             execute_command(command, &block)
           end
 
-          def get_cpc_id_by_cpc_grp_id(grp_ids, valid_keyword_only = true, options = {}, &block)
+          def get_cpc_id_by_cpc_grp_id(grp_ids, valid_keyword_only: true, options: {}, &block)
             command = make_command(
               :get_cpc_id_by_cpc_grp_id,
               params: {

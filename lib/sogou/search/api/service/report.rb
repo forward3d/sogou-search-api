@@ -9,7 +9,7 @@ module Sogou
             super('ReportService')
           end
 
-          def get_report_id(start_date, end_date, type, fields, options = {}, platform: 0, &block)
+          def get_report_id(start_date, end_date, type, fields, options: {}, platform: 0, &block)
             command = make_command(
               :get_report_id,
               params: {
@@ -26,7 +26,7 @@ module Sogou
             execute_command(command, &block)
           end
 
-          def get_report_state(report_id, options = {}, &block)
+          def get_report_state(report_id, options: {}, &block)
             command = make_command(
               :get_report_state,
               params: { report_id: report_id },
@@ -35,7 +35,7 @@ module Sogou
             execute_command(command, &block)
           end
 
-          def get_report_path(report_id, options = {}, &block)
+          def get_report_path(report_id, options: {}, &block)
             command = make_command(
               :get_report_path,
               params: { report_id: report_id },
