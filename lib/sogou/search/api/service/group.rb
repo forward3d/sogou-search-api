@@ -4,12 +4,12 @@ module Sogou
   module Search
     module Api
       module Service
-        class PromotionGroup < Core::BaseService
+        class Group < Core::BaseService
           def initialize
             super('CpcGrpService')
           end
 
-          def get_cpc_grp_by_cpc_plan_id(plan_ids, options = {}, &block)
+          def get_cpc_grp_by_cpc_plan_id(plan_ids, options: {}, &block)
             command = make_command(
               :get_cpc_grp_by_cpc_plan_id,
               params: { cpc_plan_ids: plan_ids },
@@ -18,7 +18,7 @@ module Sogou
             execute_command(command, &block)
           end
 
-          def get_cpc_grp_id_by_cpc_plan_id(plan_ids, options = {}, &block)
+          def get_cpc_grp_id_by_cpc_plan_id(plan_ids, options: {}, &block)
             command = make_command(
               :get_cpc_grp_id_by_cpc_plan_id,
               params: { cpc_plan_ids: plan_ids },

@@ -1,6 +1,6 @@
 require 'sogou/search/api/auth'
 require 'sogou/search/api/service/plan'
-require 'sogou/search/api/service/promotion_group'
+require 'sogou/search/api/service/group'
 
 #
 # Set your Sogou api credentials to ENVs
@@ -15,7 +15,7 @@ plan = Service::Plan.new
 plan.authorization = Auth.get_application_default
 plan_ids = plan.get_all_cpc_plan_id.slice(0, 2)
 
-group = Service::PromotionGroup.new
+group = Service::Group.new
 group.authorization = Auth.get_application_default
 group.get_cpc_grp_by_cpc_plan_id(plan_ids) do |result, err|
   if err != nil

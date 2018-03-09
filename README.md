@@ -45,7 +45,7 @@ include Sogou::Search::Api
 
 account = Service::Account.new
 account.authorization = Auth.get_application_default
-account.get_account_info(convert_regions_to_string: true) do |result, err|
+account.get_account_info(options: { convert_regions_to_string: true }) do |result, err|
   if err != nil
     p err
   else
@@ -62,7 +62,7 @@ returning the result from the call or raising the error. Example:
 
 ```ruby
 # Read account info
-account.get_account_info(convert_regions_to_string: true) do |result, err|
+account.get_account_info(options: { convert_regions_to_string: true }) do |result, err|
   if err
     # Handle error
   else
