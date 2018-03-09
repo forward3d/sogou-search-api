@@ -4,7 +4,7 @@ module Sogou
   module Search
     module Api
       module Service
-        class PromotionGroup < Core::BaseService
+        class Group < Core::BaseService
           def initialize
             super('CpcGrpService')
           end
