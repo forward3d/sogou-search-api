@@ -15,8 +15,9 @@ report.authorization = Auth.get_application_default
 report_id = report.get_report_id(
   '2018-02-20T00:00:00',
   '2018-02-20T23:59:59',
-  1,
-  ['cost', 'cpc', 'click', 'ctr', 'position']
+  2,
+  ['cost', 'cpc', 'click', 'ctr', 'impression', 'position'],
+  platform: 2
   )
 
 state = '0'

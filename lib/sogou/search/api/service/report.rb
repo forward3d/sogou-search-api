@@ -9,7 +9,7 @@ module Sogou
             super('ReportService')
           end
 
-          def get_report_id(start_date, end_date, type, fields, options = {}, &block)
+          def get_report_id(start_date, end_date, type, fields, options = {}, platform: 0, &block)
             command = make_command(
               :get_report_id,
               params: {
@@ -17,7 +17,8 @@ module Sogou
                   performance_data: fields,
                   start_date: start_date,
                   end_date: end_date,
-                  report_type: type
+                  report_type: type,
+                  platform: platform
                 }
               },
               options: options
