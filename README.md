@@ -82,6 +82,16 @@ SOGOU_USERNAME="YOUR SOGOU USERNAME"
 SOGOU_PASSWORD="YOUR SOGOU PASSWORD"
 ```
 
+### Env
+
+There are two ways to set the environment. One is `ENV['ENV']` environment variable. Another is service attribute.
+If service attribute is set, environment variable will be ignored.
+
+```ruby
+account = Service::Account.new
+account.env = 'production'
+```
+
 ## Logging
 
 The client includes a `Logger` instance that can be used to capture debugging information.
