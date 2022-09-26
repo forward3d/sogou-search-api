@@ -68,5 +68,14 @@ describe Core::BaseService do
 
       it { expect(service_host).to eq('api.agent.sogou.com') }
     end
+
+    context 'with preset env' do
+      before(:each) do
+        ENV['ENV'] = 'production'
+        this.env = 'development'
+      end
+
+      it { expect(service_host).to eq('api.agent.sogou.com:8080') }
+    end
   end
 end
