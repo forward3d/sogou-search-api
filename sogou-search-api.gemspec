@@ -27,5 +27,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rake', '~> 13.0'
   spec.add_development_dependency 'rspec', '~> 3.11'
   spec.add_development_dependency 'simplecov', '~> 0.21'
-  spec.add_development_dependency 'gem-release', '~> 2.2'
 end
