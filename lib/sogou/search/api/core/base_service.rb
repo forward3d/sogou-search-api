@@ -9,6 +9,7 @@ module Sogou
         class BaseService
           attr_accessor :authorization
           attr_accessor :client_options
+          attr_accessor :env
 
           def initialize(service)
             @url = "http://#{service_host}/sem/sms/v1/#{service}?wsdl"
@@ -50,7 +51,11 @@ module Sogou
           private
 
           def service_host
-            "api.agent.sogou.com#{ENV.fetch('ENV', 'development') == 'development' ? ':8080' : ''}"
+            "api.agent.sogou.com#{environment == 'development' ? ':8080' : ''}"
+          end
+
+          def environment
+            @env ||= ENV.fetch('ENV', 'development')
           end
         end
       end
