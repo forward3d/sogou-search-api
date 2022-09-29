@@ -28,6 +28,16 @@ describe Core::BaseService do
     context 'without options' do
       it { expect(client).to be_a_kind_of(Savon::Client) }
 
+      it 'sets the right wsdl for development environment' do
+        this.instance_variable_set(:@env, 'development')
+        expect(client.wsdl.document).to eq("http://api.agent.sogou.com:8080/sem/sms/v1/foo?wsdl")
+      end
+
+      it 'sets the right wsdl for production environment' do
+        this.instance_variable_set(:@env, 'production')
+        expect(client.wsdl.document).to eq("http://api.agent.sogou.com/sem/sms/v1/foo?wsdl")
+      end
+
       context ', no authorization' do
         it { expect(client.globals[:soap_header]).to eq({}) }
       end

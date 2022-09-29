@@ -12,7 +12,7 @@ module Sogou
           attr_accessor :env
 
           def initialize(service)
-            @url = "http://#{service_host}/sem/sms/v1/#{service}?wsdl"
+            @service = service
             @client_options = ClientOptions.default.dup
           end
 
@@ -31,7 +31,7 @@ module Sogou
 
           def client
             @client ||= Savon::Client.new do |savon|
-              savon.wsdl(@url)
+              savon.wsdl(url)
               savon.pretty_print_xml(true)
               savon.namespaces('xmlns:v1' => 'http://api.sogou.com/sem/common/v1')
               savon.env_namespace(:soapenv)
@@ -49,6 +49,10 @@ module Sogou
           end
 
           private
+
+          def url
+            "http://#{service_host}/sem/sms/v1/#{@service}?wsdl"
+          end
 
           def service_host
             "api.agent.sogou.com#{environment == 'development' ? ':8080' : ''}"
