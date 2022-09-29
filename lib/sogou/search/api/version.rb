@@ -1,7 +1,7 @@
 module Sogou
   module Search
     module Api
-      VERSION = '2.0.0'
+      VERSION = '2.0.1'
 
       OS_VERSION = begin
         if RUBY_PLATFORM =~ /mswin|win32|mingw|bccwin|cygwin/
